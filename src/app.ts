@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import "express-async-errors";
 import { greetRouter } from "./routes/greet/greet";
+import { languageRoute } from "./routes/language/language";
 
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(json());
 
 app.use(greetRouter);
+app.use(languageRoute);
 
 
 app.all("*", (request, response) => {

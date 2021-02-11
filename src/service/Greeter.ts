@@ -9,8 +9,10 @@ export default class Greeter {
         this.name = name;
     }
 
+
     public greet(language: string): string {
         let greetingText = "";
+
         if (language.toLowerCase() === "en") {
             greetingText = `${EnvVars.GREET_TEXT_EN} Your name is ${this.name}.`;
         }

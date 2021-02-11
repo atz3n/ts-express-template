@@ -16,20 +16,11 @@ router.get(
     validateRequest,
     (request: Request, response: Response) => {
         const name = <string> request.query.name;
-        // const language = <string> req.query.language || "en";
-
-        // if (!checkLanguage(language)) {
-        //     return res.status(400).send("Language not supported");
-        // }
-
         const greeter = new Greeter(name);
+
         return response.send(greeter.greet(LanguageStore.language));
     }
 );
-
-// function checkLanguage(language: string): boolean {
-//     return language.toLowerCase() === "en" || language.toLowerCase() === "de";
-// }
 
 
 export { router as greetRouter };
