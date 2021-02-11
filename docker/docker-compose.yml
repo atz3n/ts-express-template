@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  express-greeter:
+    image: "express-greeter-image"
+    ports:
+      # extern:intern
+      - "3000:3000"
+    environment:
+      - IS_DOCKER=true
+      - GREET_TEXT_EN="Hello from Docker."
+      - GREET_TEXT_DE="Hallo aus Docker."
+      - PORT=3000

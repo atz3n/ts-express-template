@@ -1,0 +1,33 @@
+import dotenv from  "dotenv";
+
+
+export default class EnvVars {
+    public static GREET_TEXT_EN = "Hello World."
+    public static GREET_TEXT_DE = "Hallo Welt."
+    public static PORT = 3000;
+
+
+    public static load(): void {
+        if (!process.env.IS_DOCKER) {
+            dotenv.config();
+        }
+
+
+        if (process.env.GREET_TEXT_EN) {
+            this.GREET_TEXT_EN = process.env.GREET_TEXT_EN;
+        }
+
+        if (process.env.GREET_TEXT_DE) {
+            this.GREET_TEXT_DE = process.env.GREET_TEXT_DE;
+        }
+
+
+        if (process.env.PORT) {
+            try {
+                this.PORT = parseInt(process.env.PORT);
+            } catch (e) {
+                throw new Error("PORT must be a number");
+            }
+        }
+    }
+}

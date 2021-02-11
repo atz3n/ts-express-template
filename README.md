@@ -1,2 +1,2 @@
 # ts-express-template
-getting started project for backend systems with nodejs, express and typescript
+Getting started project for nodejs services with nodejs, express, typescript, docker and docker-compose.

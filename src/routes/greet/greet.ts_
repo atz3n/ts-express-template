@@ -1,0 +1,76 @@
+import express, { Request, Response } from "express";
+import { body } from "express-validator";
+import EnvLoader from "../../lib/EnvVars";
+import validateRequest from "../../middlewares/requestValidation";
+import DeeplRequest from "../../services/deeplRequest/DeeplRequest";
+import DeeplRequestService from "../../services/deeplRequest/DeeplRequestService";
+import DummyRequest from "../../services/deeplRequest/DummyRequest";
+import { Language } from "../../types";
+
+const router = express.Router();
+
+
+router.post(
+    "/greet",
+    [
+        body("targetLanguage").notEmpty().withMessage("targetLang required"),
+        body("targetLanguage").isString().withMessage("targetLang must be a string"),
+        body("password").notEmpty().withMessage("password required"),
+        body("password").isString().withMessage("password must be a string"),
+        body("text").notEmpty().withMessage("text required"),
+        body("text").isString().withMessage("text must be a string")
+    ],
+    validateRequest,
+    async (req: Request, res: Response) => {
+        const sourceLanguage = req.body.sourceLanguage as string | undefined;
+        const targetLanguage = req.body.targetLanguage as string;
+        const password = req.body.password as string;
+        const text = req.body.text as string;
+
+
+        if (!checkPassword(password)) {
+            return res.status(400).send("wrong password");
+        }
+
+        if (sourceLanguage && !checkLanguage(sourceLanguage)) {
+            return res.status(400).send("language not supported");
+        }
+
+        if (!checkLanguage(targetLanguage)) {
+            return res.status(400).send("language not supported");
+        }
+
+
+        let deeplyService: DeeplRequestService;
+        if (EnvLoader.IS_PRODUCTION) {
+            deeplyService = new DeeplRequest();
+        } else {
+            deeplyService = new DummyRequest();
+        }
+
+        try {
+            const deeplResponse = await deeplyService.run(text, <Language> targetLanguage, <Language | undefined> sourceLanguage);
+            return res.send(deeplResponse);
+        } catch (e) {
+            return res.status(500).send("internal error");
+        }
+    }
+);
+
+function checkPassword(password: string): boolean {
+    return password === EnvLoader.DEEPLY_PASSWORD;
+}
+
+function checkLanguage(language: string): boolean {
+    let languageExists = false;
+
+    Object.values(Language).forEach((_language) => {
+        if (_language === language) {
+            languageExists = true;
+        }
+    });
+
+    return languageExists;
+}
+
+export { router as translateRouter };
