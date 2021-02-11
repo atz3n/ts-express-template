@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   express-greeter:
-    image: "express-greeter-image"
+    image: "express-greeter"
     ports:
       # extern:intern
       - "3000:3000"
