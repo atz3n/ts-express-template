@@ -1,13 +1,20 @@
-import dotenv from  "dotenv";
+import dotenv from "dotenv";
 
 
 export default class EnvVars {
+    private static isInitialized = false;
     public static GREET_TEXT_EN = "Hello World."
     public static GREET_TEXT_DE = "Hallo Welt."
     public static PORT = 3000;
 
 
     public static load(): void {
+        if (this.isInitialized) {
+            return;
+        }
+        this.isInitialized = true;
+
+        
         if (!process.env.IS_DOCKER) {
             dotenv.config();
         }
@@ -31,3 +38,5 @@ export default class EnvVars {
         }
     }
 }
+
+EnvVars.load();

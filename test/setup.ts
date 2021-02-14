@@ -1,4 +1,3 @@
-import EnvVars from "../src/lib/EnvVars";
+/* Code that will be called before running tests */
 
 
-EnvVars.load();
