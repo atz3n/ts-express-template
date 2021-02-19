@@ -1,18 +1,17 @@
 version: "3.8"
 networks: 
-  simple-greeter-network:
+  crud-greeter-network:
     external: false
-    name: simple-greeter-network
+    name: crud-greeter-network
 services:
-  simple-greeter:
-    image: simple-greeter
+  crud-greeter:
+    image: crud-greeter
     networks: 
-      - simple-greeter-network
+      - crud-greeter-network
     ports:
       # extern:intern
       - 3000:3000
     environment:
       - IS_DOCKER=true
-      - GREET_TEXT_EN=Hello from Docker.
-      - GREET_TEXT_DE=Hallo aus Docker.
+      - AUTH_TOKEN=your-super-secret-token
       - PORT=3000

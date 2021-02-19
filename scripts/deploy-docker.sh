@@ -6,8 +6,8 @@
 ###################################################################################################
 
 DOMAIN="<your ssh domain>"
-FOLDER_NAME="simple-greeter"
-IMAGE_NAME="simple-greeter"
+FOLDER_NAME="crud-greeter"
+IMAGE_NAME="crud-greeter"
 
 
 SERVER_FOLDER="${DOMAIN}:${FOLDER_NAME}"

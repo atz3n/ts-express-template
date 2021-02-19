@@ -1,10 +1,12 @@
 import dotenv from "dotenv";
+import { GreetingStoreType } from "../storage/GreetingStoreFactory";
 
 
 export default class EnvVars {
     private static isInitialized = false;
-    public static GREET_TEXT_EN = "Hello World."
-    public static GREET_TEXT_DE = "Hallo Welt."
+
+    public static AUTH_TOKEN = "";
+    public static STORAGE_TYPE = GreetingStoreType.IN_MEMORY;
     public static PORT = 3000;
 
 
@@ -14,18 +16,28 @@ export default class EnvVars {
         }
         this.isInitialized = true;
 
-        
+
         if (!process.env.IS_DOCKER) {
             dotenv.config();
         }
 
 
-        if (process.env.GREET_TEXT_EN) {
-            this.GREET_TEXT_EN = process.env.GREET_TEXT_EN;
+        if (!process.env.AUTH_TOKEN) {
+            throw new Error("AUTH_TOKEN must be defined");
         }
+        this.AUTH_TOKEN = process.env.AUTH_TOKEN;
 
-        if (process.env.GREET_TEXT_DE) {
-            this.GREET_TEXT_DE = process.env.GREET_TEXT_DE;
+
+        if (process.env.STORAGE_TYPE) {
+            switch (process.env.STORAGE_TYPE) {
+                case "IN_MEMORY": {
+                    this.STORAGE_TYPE = GreetingStoreType.IN_MEMORY;
+                    break;
+                }
+                default: {
+                    throw new Error("STORAGE_TYPE not supported");
+                }
+            }
         }
 
 
