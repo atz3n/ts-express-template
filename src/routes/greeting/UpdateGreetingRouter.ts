@@ -1,16 +1,17 @@
-import express, { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import { body } from "express-validator";
 import validateAuthToken from "../../middleware/authTokenValidation";
 import validateRequest from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
+import ARouter from "../ARouter";
 
 
-export default class UpdateGreetingRouter {
-    private readonly router = express.Router();
+export default class UpdateGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 
     constructor(greetingStore: IGreetingStore) {
+        super();
         this.greetingStore = greetingStore;
         this.createRoute();
     }
@@ -44,10 +45,5 @@ export default class UpdateGreetingRouter {
                 }
             }
         );
-    }
-
-
-    public getRouter(): Router {
-        return this.router;
     }
 }
