@@ -1,12 +1,18 @@
 version: "3.8"
+networks: 
+  simple-greeter-network:
+    external: false
+    name: simple-greeter-network
 services:
-  express-greeter:
-    image: "express-greeter"
+  simple-greeter:
+    image: simple-greeter
+    networks: 
+      - simple-greeter-network
     ports:
       # extern:intern
-      - "3000:3000"
+      - 3000:3000
     environment:
       - IS_DOCKER=true
-      - GREET_TEXT_EN="Hello from Docker."
-      - GREET_TEXT_DE="Hallo aus Docker."
+      - GREET_TEXT_EN=Hello from Docker.
+      - GREET_TEXT_DE=Hallo aus Docker.
       - PORT=3000

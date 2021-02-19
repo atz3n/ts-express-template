@@ -6,8 +6,8 @@
 ###################################################################################################
 
 DOMAIN="<your ssh domain>"
-FOLDER_NAME="express-greeter"
-IMAGE_NAME="express-greeter"
+FOLDER_NAME="simple-greeter"
+IMAGE_NAME="simple-greeter"
 
 
 SERVER_FOLDER="${DOMAIN}:${FOLDER_NAME}"
