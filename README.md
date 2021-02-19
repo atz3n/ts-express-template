@@ -2,6 +2,30 @@
 Getting started project for nodejs services with nodejs, express, typescript, docker and docker-compose.
 
 
+## API
+
+- **Get Greeting**
+  - GET /greet
+    - request
+      - query
+        - name: string
+    - response
+      - status code
+        - 200 (OK)
+        - 400 (Bad Request)
+      - text (if success)
+        - greeting
+- **Set Language**
+  - POST /language
+    - request
+      - body
+        - language: "en" | "de"
+    - response
+      - status code
+        - 200 (OK)
+        - 400 (Bad Request)
+
+
 ## Development
 
 Create an `.env` based on `.env-sample` an adapt it.

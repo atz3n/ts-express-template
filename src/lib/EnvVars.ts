@@ -14,7 +14,7 @@ export default class EnvVars {
         }
         this.isInitialized = true;
 
-        
+
         if (!process.env.IS_DOCKER) {
             dotenv.config();
         }
