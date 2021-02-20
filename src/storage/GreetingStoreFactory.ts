@@ -1,20 +1,15 @@
 import { IGreetingStore } from "./IGreetingStore";
 import GreetingStoreInMemory from "./GreetingStoreInMemory";
-
-
-export enum GreetingStoreType {
-    IN_MEMORY,
-    MONGO_DB
-}
+import { StorageType } from "./StorageType";
 
 
 export default class GreetingStoreFactory {
     private static inMemoryStore: IGreetingStore;
 
 
-    public static getGreetingStore(type: GreetingStoreType): IGreetingStore {
+    public static getGreetingStore(type: StorageType): IGreetingStore {
         switch (type) {
-            case GreetingStoreType.IN_MEMORY: {
+            case StorageType.IN_MEMORY: {
                 return this.getInMemoryStore();
             }
             default: {

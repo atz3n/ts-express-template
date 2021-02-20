@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-import { GreetingStoreType } from "../storage/GreetingStoreFactory";
+import { StorageType } from "../storage/StorageType";
 
 
 export default class EnvVars {
     private static isInitialized = false;
 
     public static AUTH_TOKEN = "";
-    public static STORAGE_TYPE = GreetingStoreType.IN_MEMORY;
+    public static STORAGE_TYPE = StorageType.IN_MEMORY;
     public static PORT = 3000;
 
 
@@ -31,7 +31,7 @@ export default class EnvVars {
         if (process.env.STORAGE_TYPE) {
             switch (process.env.STORAGE_TYPE) {
                 case "IN_MEMORY": {
-                    this.STORAGE_TYPE = GreetingStoreType.IN_MEMORY;
+                    this.STORAGE_TYPE = StorageType.IN_MEMORY;
                     break;
                 }
                 default: {
