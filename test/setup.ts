@@ -1,6 +1,6 @@
 import EnvVars from "../src/lib/EnvVars";
-import { GreetingStoreType } from "../src/storage/GreetingStoreFactory";
+import { StorageType } from "../src/storage/StorageType";
 
 
 EnvVars.AUTH_TOKEN = "testToken";
-EnvVars.STORAGE_TYPE = GreetingStoreType.IN_MEMORY;
+EnvVars.STORAGE_TYPE = StorageType.IN_MEMORY;
