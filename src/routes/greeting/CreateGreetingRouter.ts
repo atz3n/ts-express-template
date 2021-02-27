@@ -6,7 +6,7 @@ import { IGreetingStore } from "../../storage/IGreetingStore";
 import ARouter from "../ARouter";
 
 
-export default class CreateTextureRouter extends ARouter {
+export default class CreateGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 
