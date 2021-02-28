@@ -14,13 +14,13 @@ export default class GreetingStoreInMemory implements IGreetingStore {
     }
 
 
-    public async getGreeting(id: string): Promise<string> {
+    public async getGreeting(id: string): Promise<string | undefined> {
         const foundGreetings = this.greetingStore.filter((greetingObject) => {
             return id === greetingObject.id;
         });
 
         if (foundGreetings.length === 0) {
-            return "";
+            return undefined;
         }
 
         return foundGreetings[0].greeting;
@@ -33,10 +33,6 @@ export default class GreetingStoreInMemory implements IGreetingStore {
 
 
     public async updateGreeting(greetingObject: Greeting): Promise<void> {
-        if (!this.getGreeting(greetingObject.id)) {
-            throw new Error("Could not find greeting");
-        }
-
         for (let i = 0 ; i < this.greetingStore.length ; i++) {
             if (this.greetingStore[i].id === greetingObject.id) {
                 this.greetingStore[i].greeting = greetingObject.greeting;
@@ -47,10 +43,6 @@ export default class GreetingStoreInMemory implements IGreetingStore {
 
 
     public async deleteGreeting(id: string): Promise<void> {
-        if (!this.getGreeting(id)) {
-            throw new Error("Could not find greeting");
-        }
-
         for (let i = 0 ; i < this.greetingStore.length ; i++) {
             if (this.greetingStore[i].id === id) {
                 this.greetingStore.splice(i, 1);
