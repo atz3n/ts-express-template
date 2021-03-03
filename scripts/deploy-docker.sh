@@ -5,12 +5,12 @@
 # CONFIGURATION
 ###################################################################################################
 
-DOMAIN="<your ssh domain>"
+SSH_DOMAIN="<your ssh domain (user@domain)>"
 FOLDER_NAME="crud-greeter"
 IMAGE_NAME="crud-greeter"
 
 
-SERVER_FOLDER="${DOMAIN}:${FOLDER_NAME}"
+SERVER_FOLDER="${SSH_DOMAIN}:${FOLDER_NAME}"
 
 
 ###################################################################################################
@@ -18,15 +18,15 @@ SERVER_FOLDER="${DOMAIN}:${FOLDER_NAME}"
 ###################################################################################################
 
 echo "[INFO] Copying files to server ..."
-ssh -t ${DOMAIN} "mkdir -p ${FOLDER_NAME}/scripts"
-ssh -t ${DOMAIN} "mkdir -p ${FOLDER_NAME}/docker"
+ssh -t ${SSH_DOMAIN} "mkdir -p ${FOLDER_NAME}/scripts"
+ssh -t ${SSH_DOMAIN} "mkdir -p ${FOLDER_NAME}/docker"
 
 scp ./run-docker.sh "${SERVER_FOLDER}/scripts"
 scp ./stop-docker.sh "${SERVER_FOLDER}/scripts"
 scp ../docker/docker-compose.yml "${SERVER_FOLDER}/docker"
 
-ssh -t ${DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/run-docker.sh"
-ssh -t ${DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/stop-docker.sh"
+ssh -t ${SSH_DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/run-docker.sh"
+ssh -t ${SSH_DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/stop-docker.sh"
 
 
 echo "" && echo "[INFO] Building ${IMAGE_NAME} image ..."
@@ -39,16 +39,16 @@ scp ./${IMAGE_NAME}-image.tar ${SERVER_FOLDER}
 
 
 echo "" && echo "[INFO] Loading ${IMAGE_NAME} image on server ..."
-ssh -t ${DOMAIN} "sudo docker load -i ./${FOLDER_NAME}/${IMAGE_NAME}-image.tar"
+ssh -t ${SSH_DOMAIN} "sudo docker load -i ./${FOLDER_NAME}/${IMAGE_NAME}-image.tar"
 
 
 echo "" && echo "[INFO] (Re)starting ${IMAGE_NAME} on server ..."
-ssh -t ${DOMAIN} "cd ./${FOLDER_NAME}/scripts && ./stop-docker.sh"
-ssh -t ${DOMAIN} "cd ./${FOLDER_NAME}/scripts && ./run-docker.sh"
+ssh -t ${SSH_DOMAIN} "cd ./${FOLDER_NAME}/scripts && ./stop-docker.sh"
+ssh -t ${SSH_DOMAIN} "cd ./${FOLDER_NAME}/scripts && ./run-docker.sh"
 
 
 echo "" && echo "[INFO] Cleaning up ..."
-ssh -t ${DOMAIN} "rm ./${FOLDER_NAME}/${IMAGE_NAME}-image.tar"
+ssh -t ${SSH_DOMAIN} "rm ./${FOLDER_NAME}/${IMAGE_NAME}-image.tar"
 rm ./${IMAGE_NAME}-image.tar
 
 
