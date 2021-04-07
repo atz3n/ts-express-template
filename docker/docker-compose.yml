@@ -2,7 +2,6 @@ version: "3.8"
 networks: 
   crud-greeter-network:
     external: false
-    name: crud-greeter-network
 services:
   crud-greeter:
     image: crud-greeter
@@ -12,6 +11,5 @@ services:
       # extern:intern
       - 3000:3000
     environment:
-      - IS_DOCKER=true
       - AUTH_TOKEN=your-super-secret-token
       - PORT=3000
