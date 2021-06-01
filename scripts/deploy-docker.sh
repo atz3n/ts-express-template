@@ -31,10 +31,12 @@ ssh -t ${SSH_DOMAIN} "mkdir -p ${FOLDER_NAME}/scripts"
 ssh -t ${SSH_DOMAIN} "mkdir -p ${FOLDER_NAME}/docker"
 
 scp ./run-docker.sh "${SERVER_FOLDER}/scripts"
+scp ./pause-docker.sh "${SERVER_FOLDER}/scripts"
 scp ./stop-docker.sh "${SERVER_FOLDER}/scripts"
 scp ../docker/docker-compose.yml "${SERVER_FOLDER}/docker"
 
 ssh -t ${SSH_DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/run-docker.sh"
+ssh -t ${SSH_DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/pause-docker.sh"
 ssh -t ${SSH_DOMAIN} "sudo chmod 700 ./${FOLDER_NAME}/scripts/stop-docker.sh"
 
 scp ./${IMAGE_NAME}-image.tar ${SERVER_FOLDER}
