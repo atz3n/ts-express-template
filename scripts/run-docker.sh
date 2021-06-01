@@ -1,8 +1,11 @@
 #!/bin/bash
 
+PROJECT_NAME="greeter"
+
+
 cd ../docker
 if [ $(uname) == Linux ]; then
-    sudo docker-compose up -d
+    sudo docker-compose -p ${PROJECT_NAME} up -d
 else 
-    docker-compose up -d 
+    docker-compose -p ${PROJECT_NAME} up -d
 fi
