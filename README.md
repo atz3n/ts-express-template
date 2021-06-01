@@ -126,12 +126,18 @@ cd ./scripts
 
 Start
 ```
-./run-docker-compose.sh
+./run-docker.sh
+```
+
+
+Pause
+```
+./run-docker.sh
 ```
 
 Stop
 ```
-./stop-docker-compose.sh
+./stop-docker.sh
 ```
 
 
