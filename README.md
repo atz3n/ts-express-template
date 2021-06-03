@@ -9,8 +9,9 @@ Each body comes in raw json format.
 - **Create Greeting**
   - POST /greeting
     - request
-      - body
+      - query
         - authToken: string
+      - body
         - greeting: string
     - response
       - status code
@@ -52,8 +53,9 @@ Each body comes in raw json format.
 - **Update Greeting**
   - PATCH /greeting/:id
     - request
-      - body
+      - query
         - authToken: string
+      - body
         - greeting: string (stringified JSON)
     - response
       - status code
