@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { body } from "express-validator";
+import { body, query } from "express-validator";
 import { CustomError } from "../../errors/custom-error";
 import { InternalError } from "../../errors/internal-error";
 import { NotFoundError } from "../../errors/not-found-error";
@@ -23,8 +23,8 @@ export default class UpdateGreetingRouter extends ARouter {
         this.router.patch(
             "/greeting/:id",
             [
-                body("authToken").notEmpty(),
-                body("authToken").isString(),
+                query("authToken").notEmpty(),
+                query("authToken").isString(),
                 body("greeting").notEmpty(),
                 body("greeting").isString()
             ],

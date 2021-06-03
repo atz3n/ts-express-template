@@ -9,9 +9,7 @@ it("returns an empty array if no greeting is stored", async () => {
 
     const response = await request(app)
         .get("/greetings")
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
     const foundGreetings = <Greeting[]> response.body.greetings;
@@ -36,9 +34,7 @@ it("successfully returns all greetings", async () => {
 
     const response = await request(app)
         .get("/greetings")
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
     const foundGreetings = <Greeting[]> response.body.greetings;
@@ -56,10 +52,8 @@ const storeGreeting = async (greeting: string): Promise<string> => {
 
     const response = await request(app)
         .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
+        .query({ authToken })
+        .send({ greeting })
         .expect(200);
 
     const id = <string> response.body.id;

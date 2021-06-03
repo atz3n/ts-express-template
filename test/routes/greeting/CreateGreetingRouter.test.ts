@@ -9,10 +9,8 @@ it("successfully creates a greeting", async () => {
 
     const createResponse = await request(app)
         .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
+        .query({ authToken })
+        .send({ greeting })
         .expect(200);
 
     const id = <string> createResponse.body.id;
@@ -20,9 +18,7 @@ it("successfully creates a greeting", async () => {
 
     const readResponse = await request(app)
         .get(`/greeting/${id}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
     const createdGreeting = <string> readResponse.body.greeting;
@@ -37,10 +33,8 @@ it("returns 401 in case of invalid authToken", async () => {
 
     await request(app)
         .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
+        .query({ authToken })
+        .send({ greeting })
         .expect(401);
 });
 
@@ -52,15 +46,11 @@ it("returns 400 in case of invalid request", async () => {
 
     await request(app)
         .post("/greeting")
-        .send({
-            greeting
-        })
+        .query({ authToken })
         .expect(400);
 
     await request(app)
         .post("/greeting")
-        .send({
-            authToken
-        })
+        .send({ greeting })
         .expect(400);
 });

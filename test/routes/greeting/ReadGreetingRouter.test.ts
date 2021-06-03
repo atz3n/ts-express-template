@@ -16,9 +16,7 @@ it("successfully returns a greeting", async () => {
 
     response = await request(app)
         .get(`/greeting/${id1}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
     greeting = <string> response.body.greeting;
@@ -27,26 +25,22 @@ it("successfully returns a greeting", async () => {
 
     response = await request(app)
         .get(`/greeting/${id2}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
-    greeting = <string> response.body.greeting;
-    expect(greeting).toEqual(greeting2);
-});
+        greeting = <string> response.body.greeting;
+        expect(greeting).toEqual(greeting2);
+    });
 
-const storeGreeting = async (greeting: string): Promise<string> => {
-    const authToken  = "testToken";
+    const storeGreeting = async (greeting: string): Promise<string> => {
+        const authToken  = "testToken";
 
 
-    const response = await request(app)
-        .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
-        .expect(200);
+        const response = await request(app)
+            .post("/greeting")
+            .query({ authToken })
+            .send({ greeting })
+            .expect(200);
 
     const id = <string> response.body.id;
     return id;
@@ -66,9 +60,7 @@ it("returns 401 in case of invalid authToken", async () => {
 
     await request(app)
         .get("/greeting/42")
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(401);
 });
 
@@ -79,8 +71,6 @@ it("returns 404 in case of not found greeting", async () => {
 
     await request(app)
         .post("/greeting/42")
-        .send({
-            authToken
-        })
+        .query({ authToken })
         .expect(404);
 });

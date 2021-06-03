@@ -12,18 +12,14 @@ it("successfully updates a greeting", async () => {
 
     await request(app)
         .patch(`/greeting/${id}`)
-        .send({
-            authToken,
-            greeting: updatedGreeting
-        })
+        .query({ authToken })
+        .send({ greeting: updatedGreeting })
         .expect(200);
 
 
     const readResponse = await request(app)
         .get(`/greeting/${id}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
     const foundUpdatedGreeting = <string> readResponse.body.greeting;
@@ -36,10 +32,8 @@ const storeGreeting = async (greeting: string): Promise<string> => {
 
     const response = await request(app)
         .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
+        .query({ authToken })
+        .send({ greeting })
         .expect(200);
 
     const id = <string> response.body.id;
@@ -53,9 +47,7 @@ it("returns 404 in case of not found greeting", async () => {
 
     await request(app)
         .patch("/greeting/42")
-        .send({
-            authToken,
-            greeting
-        })
+        .query({ authToken })
+        .send({ greeting })
         .expect(404);
 });

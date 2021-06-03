@@ -11,30 +11,24 @@ it("successfully deletes a greeting", async () => {
 
     await request(app)
         .delete(`/greeting/${id}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(200);
 
 
     await request(app)
         .get(`/greeting/${id}`)
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(404);
-});
+    });
 
-const storeGreeting = async (greeting: string): Promise<string> => {
-    const authToken = "testToken";
+    const storeGreeting = async (greeting: string): Promise<string> => {
+        const authToken = "testToken";
 
-    const response = await request(app)
-        .post("/greeting")
-        .send({
-            authToken,
-            greeting
-        })
-        .expect(200);
+        const response = await request(app)
+            .post("/greeting")
+            .query({ authToken })
+            .send({ greeting })
+            .expect(200);
 
     const id = <string> response.body.id;
     return id;
@@ -47,8 +41,6 @@ it("returns 404 in case of not found greeting", async () => {
 
     await request(app)
         .delete("/greeting/42")
-        .query({
-            authToken
-        })
+        .query({ authToken })
         .expect(404);
 });

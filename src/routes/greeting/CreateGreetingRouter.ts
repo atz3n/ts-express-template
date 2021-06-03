@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { body } from "express-validator";
+import { body, query } from "express-validator";
 import { InternalError } from "../../errors/internal-error";
 import validateAuthToken from "../../middleware/authTokenValidation";
 import validateRequest from "../../middleware/requestValidation";
@@ -21,8 +21,8 @@ export default class CreateGreetingRouter extends ARouter {
         this.router.post(
             "/greeting",
             [
-                body("authToken").notEmpty(),
-                body("authToken").isString(),
+                query("authToken").notEmpty(),
+                query("authToken").isString(),
                 body("greeting").notEmpty(),
                 body("greeting").isString()
             ],
