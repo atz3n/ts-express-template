@@ -1,12 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
+import { RequestValidationError } from "../errors/request-validation-error";
 
 
-export default function validateRequest(req: Request, res: Response, next: NextFunction): void {
-    const errors = validationResult(req);
+export default function validateRequest(request: Request, response: Response, next: NextFunction): void {
+    const errors = validationResult(request);
 
     if (!errors.isEmpty()) {
-        throw res.status(400).send(errors.array());
+        throw new RequestValidationError(errors.array());
     }
 
     next();

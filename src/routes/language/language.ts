@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
+import { BadRequestError } from "../../errors/bad-request-error";
 import LanguageStore from "../../lib/LanguageStore";
 import validateRequest from "../../middleware/requestValidation";
 
@@ -18,7 +19,7 @@ router.post(
 
 
         if (!checkLanguage(language)) {
-            return response.status(400).send("Language not supported");
+            throw new BadRequestError("Language not supported");
         }
 
 
