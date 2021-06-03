@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { query } from "express-validator";
+import { InternalError } from "../../errors/internal-error";
 import validateAuthToken from "../../middleware/authTokenValidation";
 import validateRequest from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
@@ -31,7 +32,7 @@ export default class ReadGreetingsRouter extends ARouter {
                     response.send({ greetings: foundGreetings });
                 } catch (error) {
                     console.log(error);
-                    response.status(500).send("Internal Server Error");
+                    throw new InternalError();
                 }
             }
         );

@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { NotAuthorizedError } from "../errors/not-authorized-error";
 import EnvVars from "../lib/EnvVars";
 
 
@@ -13,7 +14,7 @@ export default function validateAuthToken(request: Request, response: Response, 
     }
 
     if (authToken !== EnvVars.AUTH_TOKEN) {
-        throw response.status(401).send("Unauthorized");
+        throw new NotAuthorizedError();
     }
 
     next();
