@@ -23,7 +23,7 @@ router.post("/language",
 
 
         LanguageStore.language = language;
-        return response.send(`Language set to ${LanguageStore.language}`);
+        response.send(`Language set to ${LanguageStore.language}`);
     }
 );
 

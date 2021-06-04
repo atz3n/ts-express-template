@@ -17,7 +17,7 @@ router.get("/greet",
         const name = <string> request.query.name;
         const greeter = new Greeter(name);
 
-        return response.send(greeter.greet(LanguageStore.language));
+        response.send(greeter.greet(LanguageStore.language));
     }
 );
 
