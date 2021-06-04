@@ -1,7 +1,7 @@
-import EnvVars from "../lib/EnvVars";
+import { EnvVars } from "../lib/EnvVars";
 
 
-export default class Greeter {
+export class Greeter {
     private name = "";
 
 

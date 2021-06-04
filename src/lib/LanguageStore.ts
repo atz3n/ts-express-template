@@ -1,5 +1,5 @@
 
 
-export default class LanguageStore {
+export class LanguageStore {
     public static language = "en"
 }

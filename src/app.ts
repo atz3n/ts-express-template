@@ -7,7 +7,7 @@ import { greetRouter } from "./routes/greet/greet";
 import { languageRoute } from "./routes/language/language";
 
 
-const app = express();
+export const app = express();
 app.use(cors());
 app.use(json());
 app.use(errorHandler);
@@ -20,5 +20,3 @@ app.use(languageRoute);
 app.all("*", (request, response) => {
   response.status(404).send("Not Found");
 });
-
-export default app;

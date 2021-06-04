@@ -1,6 +1,6 @@
 import request from "supertest";
-import app from "../../../src/app";
-import EnvVars from "../../../src/lib/EnvVars";
+import { app } from "../../../src/app";
+import { EnvVars } from "../../../src/lib/EnvVars";
 
 
 it("successfully greets you in english", async () => {

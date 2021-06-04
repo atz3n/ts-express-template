@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 
 
-export default class EnvVars {
+export class EnvVars {
     private static isInitialized = false;
     public static GREET_TEXT_EN = "Hello World."
     public static GREET_TEXT_DE = "Hallo Welt."
