@@ -18,7 +18,7 @@
         "object-curly-spacing": [ "error", "always" ],
         "space-before-blocks": [ "error", "always" ],
         "keyword-spacing": [ "error", { "before": true, "after": true } ],
-        "max-len": [ "error", { "code": 160, "ignorePattern": "^import\\s|^export\\s", "ignoreStrings": true } ],
+        "max-len": [ "error", { "code": 120, "ignorePattern": "^import\\s|^export\\s", "ignoreStrings": true } ],
         "no-mixed-operators": "error",
         "no-trailing-spaces": "error",
         "arrow-parens": [ "error", "as-needed", { "requireForBlockBody": true } ],
