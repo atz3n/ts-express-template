@@ -10,15 +10,17 @@ import { ReadGreetingRouter } from "./routes/greeting/ReadGreetingRouter";
 import { ReadGreetingsRouter } from "./routes/greeting/ReadGreetingsRouter";
 import { UpdateGreetingRouter } from "./routes/greeting/UpdateGreetingRouter";
 import { GreetingStoreFactory } from "./storage/GreetingStoreFactory";
+import { NotFoundError } from "./errors/not-found-error";
 
 
 const greetingStore = GreetingStoreFactory.getGreetingStore(EnvVars.STORAGE_TYPE);
 
 
 export const app = express();
+
 app.use(cors());
 app.use(json());
-app.use(errorHandler);
+
 
 const createGreetingRouter = new CreateGreetingRouter(greetingStore);
 app.use(createGreetingRouter.getRouter());
@@ -37,5 +39,7 @@ app.use(deleteGreetingRouter.getRouter());
 
 
 app.all("*", (request, response) => {
-  response.status(404).send("Not Found");
+    throw new NotFoundError();
 });
+app.use(errorHandler);
+
