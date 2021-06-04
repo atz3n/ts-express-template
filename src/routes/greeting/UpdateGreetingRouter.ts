@@ -20,8 +20,7 @@ export default class UpdateGreetingRouter extends ARouter {
     }
 
     private createRoute(): void {
-        this.router.patch(
-            "/greeting/:id",
+        this.router.patch("/greeting/:id",
             [
                 query("authToken").notEmpty(),
                 query("authToken").isString(),

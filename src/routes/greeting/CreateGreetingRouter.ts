@@ -18,8 +18,7 @@ export default class CreateGreetingRouter extends ARouter {
     }
 
     private createRoute(): void {
-        this.router.post(
-            "/greeting",
+        this.router.post("/greeting",
             [
                 query("authToken").notEmpty(),
                 query("authToken").isString(),

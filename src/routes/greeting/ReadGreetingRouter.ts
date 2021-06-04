@@ -20,8 +20,7 @@ export default class ReadGreetingRouter extends ARouter {
     }
 
     private createRoute(): void {
-        this.router.get(
-            "/greeting/:id",
+        this.router.get("/greeting/:id",
             [
                 query("authToken").notEmpty(),
                 query("authToken").isString(),

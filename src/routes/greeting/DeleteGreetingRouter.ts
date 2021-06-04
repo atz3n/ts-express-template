@@ -20,8 +20,7 @@ export default class DeleteGreetingRouter extends ARouter {
     }
 
     private createRoute(): void {
-        this.router.delete(
-            "/greeting/:id",
+        this.router.delete("/greeting/:id",
             [
                 query("authToken").notEmpty(),
                 query("authToken").isString(),
