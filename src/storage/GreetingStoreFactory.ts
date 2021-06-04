@@ -1,9 +1,9 @@
 import { IGreetingStore } from "./IGreetingStore";
-import GreetingStoreInMemory from "./GreetingStoreInMemory";
+import { GreetingStoreInMemory } from "./GreetingStoreInMemory";
 import { StorageType } from "./StorageType";
 
 
-export default class GreetingStoreFactory {
+export class GreetingStoreFactory {
     private static inMemoryStore: IGreetingStore;
 
 

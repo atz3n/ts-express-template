@@ -1,4 +1,4 @@
-export default class Nonce {
+export class Nonce {
     private static readonly NONCE_CHARACTER_SET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 

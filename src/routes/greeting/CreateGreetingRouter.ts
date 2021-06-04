@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { body, query } from "express-validator";
 import { InternalError } from "../../errors/internal-error";
-import validateAuthToken from "../../middleware/authTokenValidation";
-import validateRequest from "../../middleware/requestValidation";
+import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { validateRequest } from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
-import ARouter from "../ARouter";
+import { ARouter } from "../ARouter";
 
 
-export default class CreateGreetingRouter extends ARouter {
+export class CreateGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 

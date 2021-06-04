@@ -1,4 +1,4 @@
-import EnvVars from "../src/lib/EnvVars";
+import { EnvVars } from "../src/lib/EnvVars";
 import { StorageType } from "../src/storage/StorageType";
 
 

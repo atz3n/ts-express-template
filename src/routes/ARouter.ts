@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 
 
-export default abstract class ARouter {
+export abstract class ARouter {
     protected readonly router = express.Router();
 
 

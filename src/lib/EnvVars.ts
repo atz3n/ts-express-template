@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { StorageType } from "../storage/StorageType";
 
 
-export default class EnvVars {
+export class EnvVars {
     private static isInitialized = false;
 
     public static AUTH_TOKEN = "";

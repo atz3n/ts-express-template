@@ -3,13 +3,13 @@ import { query } from "express-validator";
 import { CustomError } from "../../errors/custom-error";
 import { InternalError } from "../../errors/internal-error";
 import { NotFoundError } from "../../errors/not-found-error";
-import validateAuthToken from "../../middleware/authTokenValidation";
-import validateRequest from "../../middleware/requestValidation";
+import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { validateRequest } from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
-import ARouter from "../ARouter";
+import { ARouter } from "../ARouter";
 
 
-export default class DeleteGreetingRouter extends ARouter {
+export class DeleteGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 

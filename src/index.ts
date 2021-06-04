@@ -1,5 +1,5 @@
-import app from "./app";
-import EnvVars from "./lib/EnvVars";
+import { app } from "./app";
+import { EnvVars } from "./lib/EnvVars";
 
 
 function start(): void {

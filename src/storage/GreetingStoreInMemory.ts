@@ -1,8 +1,8 @@
-import Nonce from "../lib/Nonce";
+import { Nonce } from "../lib/Nonce";
 import { IGreetingStore, Greeting } from "./IGreetingStore";
 
 
-export default class GreetingStoreInMemory implements IGreetingStore {
+export class GreetingStoreInMemory implements IGreetingStore {
     private readonly ID_LENGTH = 20;
     private readonly greetingStore: Greeting[] = [];
 

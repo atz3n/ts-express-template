@@ -3,19 +3,19 @@ import cors from "cors";
 import express from "express";
 import "express-async-errors";
 import { errorHandler } from "./middleware/errorHandler";
-import EnvVars from "./lib/EnvVars";
-import CreateGreetingRouter from "./routes/greeting/CreateGreetingRouter";
-import DeleteGreetingRouter from "./routes/greeting/DeleteGreetingRouter";
-import ReadGreetingRouter from "./routes/greeting/ReadGreetingRouter";
-import ReadGreetingsRouter from "./routes/greeting/ReadGreetingsRouter";
-import UpdateGreetingRouter from "./routes/greeting/UpdateGreetingRouter";
-import GreetingStoreFactory from "./storage/GreetingStoreFactory";
+import { EnvVars } from "./lib/EnvVars";
+import { CreateGreetingRouter } from "./routes/greeting/CreateGreetingRouter";
+import { DeleteGreetingRouter } from "./routes/greeting/DeleteGreetingRouter";
+import { ReadGreetingRouter } from "./routes/greeting/ReadGreetingRouter";
+import { ReadGreetingsRouter } from "./routes/greeting/ReadGreetingsRouter";
+import { UpdateGreetingRouter } from "./routes/greeting/UpdateGreetingRouter";
+import { GreetingStoreFactory } from "./storage/GreetingStoreFactory";
 
 
 const greetingStore = GreetingStoreFactory.getGreetingStore(EnvVars.STORAGE_TYPE);
 
 
-const app = express();
+export const app = express();
 app.use(cors());
 app.use(json());
 app.use(errorHandler);
@@ -39,5 +39,3 @@ app.use(deleteGreetingRouter.getRouter());
 app.all("*", (request, response) => {
   response.status(404).send("Not Found");
 });
-
-export default app;
