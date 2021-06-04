@@ -7,8 +7,7 @@ import validateRequest from "../../middleware/requestValidation";
 
 const router = express.Router();
 
-router.post(
-    "/language",
+router.post("/language",
     [
         body("language").notEmpty().withMessage("language required"),
         body("language").isString().withMessage("language must be a string")

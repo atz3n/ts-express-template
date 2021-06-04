@@ -7,8 +7,7 @@ import Greeter from "../../service/Greeter";
 
 const router = express.Router();
 
-router.get(
-    "/greet",
+router.get("/greet",
     [
         query("name").notEmpty().withMessage("name required"),
         query("name").isString().withMessage("name must be a string")
