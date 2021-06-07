@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { query } from "express-validator";
-import { InternalError } from "../../errors/internal-error";
+import { InternalError } from "../../errors/InternalError";
 import { validateAuthToken } from "../../middleware/authTokenValidation";
 import { validateRequest } from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";

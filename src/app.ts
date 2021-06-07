@@ -10,7 +10,7 @@ import { ReadGreetingRouter } from "./routes/greeting/ReadGreetingRouter";
 import { ReadGreetingsRouter } from "./routes/greeting/ReadGreetingsRouter";
 import { UpdateGreetingRouter } from "./routes/greeting/UpdateGreetingRouter";
 import { GreetingStoreFactory } from "./storage/GreetingStoreFactory";
-import { NotFoundError } from "./errors/not-found-error";
+import { NotFoundError } from "./errors/notFoundError";
 
 
 const greetingStore = GreetingStoreFactory.getGreetingStore(EnvVars.STORAGE_TYPE);

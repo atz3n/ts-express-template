@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { body, query } from "express-validator";
-import { CustomError } from "../../errors/custom-error";
-import { InternalError } from "../../errors/internal-error";
-import { NotFoundError } from "../../errors/not-found-error";
+import { CustomError } from "../../errors/CustomError";
+import { InternalError } from "../../errors/InternalError";
+import { NotFoundError } from "../../errors/notFoundError";
 import { validateAuthToken } from "../../middleware/authTokenValidation";
 import { validateRequest } from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
