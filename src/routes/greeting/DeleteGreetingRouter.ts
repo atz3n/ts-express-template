@@ -30,21 +30,28 @@ export class DeleteGreetingRouter extends ARouter {
             async (request: Request, response: Response) => {
                 const id = <string> request.params.id;
 
-                try {
-                    const foundGreeting = await this.greetingStore.getGreeting(id);
-                    if (!foundGreeting) {
-                        throw new NotFoundError();
-                    }
 
-                    await this.greetingStore.deleteGreeting(id);
-                    response.send();
-                } catch (error) {
-                    if (error instanceof CustomError) {
-                        throw error;
-                    }
+                let foundGreeting: string | undefined;
+                try {
+                    foundGreeting = await this.greetingStore.getGreeting(id);
+                } catch (error) {
                     console.log(error);
                     throw new InternalError();
                 }
+
+                if (!foundGreeting) {
+                    throw new NotFoundError();
+                }
+
+
+                try {
+                    await this.greetingStore.deleteGreeting(id);
+                } catch (error) {
+                    console.log(error);
+                    throw new InternalError();
+                }
+
+                response.send();
             }
         );
     }

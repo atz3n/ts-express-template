@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { body, query } from "express-validator";
-import { CustomError } from "../../errors/CustomError";
 import { InternalError } from "../../errors/InternalError";
 import { NotFoundError } from "../../errors/notFoundError";
 import { validateAuthToken } from "../../middleware/authTokenValidation";
@@ -33,21 +32,28 @@ export class UpdateGreetingRouter extends ARouter {
                 const id = <string> request.params.id;
                 const greeting = <string> request.body.greeting;
 
-                try {
-                    const foundGreeting = await this.greetingStore.getGreeting(id);
-                    if (!foundGreeting) {
-                        throw new NotFoundError();
-                    }
 
-                    await this.greetingStore.updateGreeting({ id, greeting });
-                    response.send();
+                let foundGreeting: string | undefined;
+                try {
+                    foundGreeting = await this.greetingStore.getGreeting(id);
                 } catch (error) {
-                    if (error instanceof CustomError) {
-                        throw error;
-                    }
                     console.log(error);
                     throw new InternalError();
                 }
+
+                if (!foundGreeting) {
+                    throw new NotFoundError();
+                }
+
+
+                try {
+                    await this.greetingStore.updateGreeting({ id, greeting });
+                } catch (error) {
+                    console.log(error);
+                    throw new InternalError();
+                }
+
+                response.send();
             }
         );
     }

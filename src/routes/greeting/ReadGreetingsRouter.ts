@@ -3,7 +3,7 @@ import { query } from "express-validator";
 import { InternalError } from "../../errors/InternalError";
 import { validateAuthToken } from "../../middleware/authTokenValidation";
 import { validateRequest } from "../../middleware/requestValidation";
-import { IGreetingStore } from "../../storage/IGreetingStore";
+import { Greeting, IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
 
@@ -26,13 +26,15 @@ export class ReadGreetingsRouter extends ARouter {
             validateRequest,
             validateAuthToken,
             async (request: Request, response: Response) => {
+                let foundGreetings: Greeting[];
                 try {
-                    const foundGreetings = await this.greetingStore.getGreetings();
-                    response.send({ greetings: foundGreetings });
+                    foundGreetings = await this.greetingStore.getGreetings();
                 } catch (error) {
                     console.log(error);
                     throw new InternalError();
                 }
+
+                response.send({ greetings: foundGreetings });
             }
         );
     }
