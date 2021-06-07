@@ -40,7 +40,7 @@ it("successfully returns all greetings", async () => {
     const foundGreetings = <Greeting[]> response.body.greetings;
     expect(foundGreetings.length).toEqual(greetings.length);
 
-    for (let i = 0 ; i < foundGreetings.length ; i++) {
+    for (let i = 0 ; i < foundGreetings.length ; i++) {
         expect(foundGreetings[i].greeting).toEqual(greetings[i]);
         expect(foundGreetings[i].id).toEqual(ids[i]);
     }

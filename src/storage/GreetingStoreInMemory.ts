@@ -14,12 +14,12 @@ export class GreetingStoreInMemory implements IGreetingStore {
     }
 
 
-    public async getGreeting(id: string): Promise<string | undefined> {
+    public async getGreeting(id: string): Promise<string | undefined> {
         const foundGreetings = this.greetingStore.filter((greetingObject) => {
             return id === greetingObject.id;
         });
 
-        if (foundGreetings.length === 0) {
+        if (foundGreetings.length === 0) {
             return undefined;
         }
 
@@ -33,8 +33,8 @@ export class GreetingStoreInMemory implements IGreetingStore {
 
 
     public async updateGreeting(greetingObject: Greeting): Promise<void> {
-        for (let i = 0 ; i < this.greetingStore.length ; i++) {
-            if (this.greetingStore[i].id === greetingObject.id) {
+        for (let i = 0 ; i < this.greetingStore.length ; i++) {
+            if (this.greetingStore[i].id === greetingObject.id) {
                 this.greetingStore[i].greeting = greetingObject.greeting;
                 break;
             }
@@ -43,8 +43,8 @@ export class GreetingStoreInMemory implements IGreetingStore {
 
 
     public async deleteGreeting(id: string): Promise<void> {
-        for (let i = 0 ; i < this.greetingStore.length ; i++) {
-            if (this.greetingStore[i].id === id) {
+        for (let i = 0 ; i < this.greetingStore.length ; i++) {
+            if (this.greetingStore[i].id === id) {
                 this.greetingStore.splice(i, 1);
                 break;
             }

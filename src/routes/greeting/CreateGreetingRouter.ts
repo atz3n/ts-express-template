@@ -7,11 +7,11 @@ import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
 
-export class CreateGreetingRouter extends ARouter {
+export class CreateGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 
-    constructor(greetingStore: IGreetingStore) {
+    constructor(greetingStore: IGreetingStore) {
         super();
         this.greetingStore = greetingStore;
         this.createRoute();
@@ -30,10 +30,10 @@ export class CreateGreetingRouter extends ARouter {
             async (request: Request, response: Response) => {
                 const greeting = <string> request.body.greeting;
 
-                try {
+                try {
                     const id = await this.greetingStore.storeGreeting(greeting);
                     response.send({ id });
-                } catch (error) {
+                } catch (error) {
                     console.log(error);
                     throw new InternalError();
                 }

@@ -28,8 +28,8 @@ export class EnvVars {
         this.AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 
-        if (process.env.STORAGE_TYPE) {
-            switch (process.env.STORAGE_TYPE) {
+        if (process.env.STORAGE_TYPE) {
+            switch (process.env.STORAGE_TYPE) {
                 case "IN_MEMORY": {
                     this.STORAGE_TYPE = StorageType.IN_MEMORY;
                     break;
@@ -42,9 +42,9 @@ export class EnvVars {
 
 
         if (process.env.PORT) {
-            try {
+            try {
                 this.PORT = parseInt(process.env.PORT);
-            } catch (e) {
+            } catch (e) {
                 throw new Error("PORT must be a number");
             }
         }

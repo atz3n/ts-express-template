@@ -8,11 +8,11 @@ import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
 
-export class ReadGreetingRouter extends ARouter {
+export class ReadGreetingRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 
-    constructor(greetingStore: IGreetingStore) {
+    constructor(greetingStore: IGreetingStore) {
         super();
         this.greetingStore = greetingStore;
         this.createRoute();
@@ -31,14 +31,14 @@ export class ReadGreetingRouter extends ARouter {
 
 
                 let foundGreeting: string | undefined;
-                try {
+                try {
                     foundGreeting = await this.greetingStore.getGreeting(id);
-                } catch (error) {
+                } catch (error) {
                     console.log(error);
                     throw new InternalError();
                 }
 
-                if (!foundGreeting) {
+                if (!foundGreeting) {
                     throw new NotFoundError();
                 }
 

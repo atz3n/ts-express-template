@@ -7,11 +7,11 @@ import { Greeting, IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
 
-export class ReadGreetingsRouter extends ARouter {
+export class ReadGreetingsRouter extends ARouter {
     private readonly greetingStore: IGreetingStore;
 
 
-    constructor(greetingStore: IGreetingStore) {
+    constructor(greetingStore: IGreetingStore) {
         super();
         this.greetingStore = greetingStore;
         this.createRoute();
@@ -27,9 +27,9 @@ export class ReadGreetingsRouter extends ARouter {
             validateAuthToken,
             async (request: Request, response: Response) => {
                 let foundGreetings: Greeting[];
-                try {
+                try {
                     foundGreetings = await this.greetingStore.getGreetings();
-                } catch (error) {
+                } catch (error) {
                     console.log(error);
                     throw new InternalError();
                 }
