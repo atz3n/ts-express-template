@@ -1,6 +1,6 @@
 import { ValidationError } from "express-validator";
-import { CustomError } from "./custom-error";
-import { ErrorMessage } from "./error-types";
+import { CustomError } from "./CustomError";
+import { ErrorMessage } from "./errorTypes";
 
 export class RequestValidationError extends CustomError {
     public readonly errors: ValidationError[];

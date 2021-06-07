@@ -1,5 +1,5 @@
-import { CustomError } from "./custom-error";
-import { ErrorMessage } from "./error-types";
+import { CustomError } from "./CustomError";
+import { ErrorMessage } from "./errorTypes";
 
 export class InternalError extends CustomError {
     statusCode = 500;

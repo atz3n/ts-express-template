@@ -1,4 +1,4 @@
-import { ErrorMessage } from "./error-types";
+import { ErrorMessage } from "./errorTypes";
 
 export abstract class CustomError extends Error {
     abstract statusCode: number;
