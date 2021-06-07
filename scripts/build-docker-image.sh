@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Builds the docker inage
+# Builds the docker image
 
 ###################################################################################################
 # CONFIGURATION
