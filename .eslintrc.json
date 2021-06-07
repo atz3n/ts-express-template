@@ -13,8 +13,8 @@
         "plugin:import/typescript"
     ],
     "rules": {
-        "no-irregular-whitespace": "off",
-        "no-empty-function": "off",
+        "no-irregular-whitespace": "error",
+        "no-empty-function": "error",
         "object-curly-spacing": [ "error", "always" ],
         "space-before-blocks": [ "error", "always" ],
         "keyword-spacing": [ "error", { "before": true, "after": true } ],

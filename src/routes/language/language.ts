@@ -17,7 +17,7 @@ router.post("/language",
         const language = <string> request.body.language || "en";
 
 
-        if (!checkLanguage(language)) {
+        if (!checkLanguage(language)) {
             throw new BadRequestError("Language not supported");
         }
 
@@ -27,7 +27,7 @@ router.post("/language",
     }
 );
 
-function checkLanguage(language: string): boolean {
+function checkLanguage(language: string): boolean {
     return language.toLowerCase() === "en" || language.toLowerCase() === "de";
 }
 

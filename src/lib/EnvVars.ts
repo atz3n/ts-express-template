@@ -30,9 +30,9 @@ export class EnvVars {
 
 
         if (process.env.PORT) {
-            try {
+            try {
                 this.PORT = parseInt(process.env.PORT);
-            } catch (e) {
+            } catch (e) {
                 throw new Error("PORT must be a number");
             }
         }
