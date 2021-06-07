@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Deploys the docker-compose project to a server with ssh access via pubkey
 
 ###################################################################################################
 # CONFIGURATION
