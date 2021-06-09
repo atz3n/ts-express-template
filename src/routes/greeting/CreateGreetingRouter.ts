@@ -1,7 +1,8 @@
 import { InternalError, validateRequest } from "@atz3n/express-utils";
 import { Request, Response } from "express";
 import { body, query } from "express-validator";
-import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { EnvVars } from "../../lib/EnvVars";
+import { validateAuthToken2 } from "../../middleware/authTokenValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
@@ -25,7 +26,7 @@ export class CreateGreetingRouter extends ARouter {
                 body("greeting").isString()
             ],
             validateRequest,
-            validateAuthToken,
+            validateAuthToken2(EnvVars.AUTH_TOKEN),
             async (request: Request, response: Response) => {
                 const greeting = <string> request.body.greeting;
 
