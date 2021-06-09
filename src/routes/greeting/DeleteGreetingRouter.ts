@@ -1,7 +1,7 @@
-import { InternalError, NotFoundError, validateRequest } from "@atz3n/express-utils";
+import { InternalError, NotFoundError, validateAuthToken, validateRequest } from "@atz3n/express-utils";
 import { Request, Response } from "express";
 import { query } from "express-validator";
-import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { EnvVars } from "../../lib/EnvVars";
 import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
@@ -23,7 +23,7 @@ export class DeleteGreetingRouter extends ARouter {
                 query("authToken").isString(),
             ],
             validateRequest,
-            validateAuthToken,
+            validateAuthToken(EnvVars.AUTH_TOKEN),
             async (request: Request, response: Response) => {
                 const id = <string> request.params.id;
 

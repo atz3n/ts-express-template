@@ -1,7 +1,7 @@
-import { InternalError, validateRequest } from "@atz3n/express-utils";
+import { InternalError, validateAuthToken, validateRequest } from "@atz3n/express-utils";
 import { Request, Response } from "express";
 import { query } from "express-validator";
-import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { EnvVars } from "../../lib/EnvVars";
 import { Greeting, IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
@@ -23,7 +23,7 @@ export class ReadGreetingsRouter extends ARouter {
                 query("authToken").isString(),
             ],
             validateRequest,
-            validateAuthToken,
+            validateAuthToken(EnvVars.AUTH_TOKEN),
             async (request: Request, response: Response) => {
                 let foundGreetings: Greeting[];
                 try {

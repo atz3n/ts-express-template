@@ -1,7 +1,7 @@
-import { InternalError, NotFoundError, validateRequest } from "@atz3n/express-utils";
+import { InternalError, NotFoundError, validateAuthToken, validateRequest } from "@atz3n/express-utils";
 import { Request, Response } from "express";
 import { body, query } from "express-validator";
-import { validateAuthToken } from "../../middleware/authTokenValidation";
+import { EnvVars } from "../../lib/EnvVars";
 import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
@@ -25,7 +25,7 @@ export class UpdateGreetingRouter extends ARouter {
                 body("greeting").isString()
             ],
             validateRequest,
-            validateAuthToken,
+            validateAuthToken(EnvVars.AUTH_TOKEN),
             async (request: Request, response: Response) => {
                 const id = <string> request.params.id;
                 const greeting = <string> request.body.greeting;
