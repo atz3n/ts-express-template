@@ -1,8 +1,7 @@
+import { BadRequestError, validateRequest } from "@atz3n/express-utils";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { BadRequestError } from "../../errors/BadRequestError";
 import { LanguageStore } from "../../lib/LanguageStore";
-import { validateRequest } from "../../middleware/requestValidation";
 
 
 const router = express.Router();

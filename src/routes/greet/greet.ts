@@ -1,7 +1,7 @@
+import { validateRequest } from "@atz3n/express-utils";
 import express, { Request, Response } from "express";
 import { query } from "express-validator";
 import { LanguageStore } from "../../lib/LanguageStore";
-import { validateRequest } from "../../middleware/requestValidation";
 import { Greeter } from "../../service/Greeter";
 
 
