@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { NotAuthorizedError } from "../errors/NotAuthorizedError";
+import { NotAuthorizedError } from "@atz3n/express-utils";
+import { NextFunction, Request, Response } from "express";
 import { EnvVars } from "../lib/EnvVars";
 
 

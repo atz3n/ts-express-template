@@ -1,8 +1,8 @@
+import { errorHandler, NotFoundError } from "@atz3n/express-utils";
 import { json } from "body-parser";
 import cors from "cors";
 import express from "express";
 import "express-async-errors";
-import { errorHandler } from "./middleware/errorHandler";
 import { EnvVars } from "./lib/EnvVars";
 import { CreateGreetingRouter } from "./routes/greeting/CreateGreetingRouter";
 import { DeleteGreetingRouter } from "./routes/greeting/DeleteGreetingRouter";
@@ -10,7 +10,6 @@ import { ReadGreetingRouter } from "./routes/greeting/ReadGreetingRouter";
 import { ReadGreetingsRouter } from "./routes/greeting/ReadGreetingsRouter";
 import { UpdateGreetingRouter } from "./routes/greeting/UpdateGreetingRouter";
 import { GreetingStoreFactory } from "./storage/GreetingStoreFactory";
-import { NotFoundError } from "./errors/notFoundError";
 
 
 const greetingStore = GreetingStoreFactory.getGreetingStore(EnvVars.STORAGE_TYPE);

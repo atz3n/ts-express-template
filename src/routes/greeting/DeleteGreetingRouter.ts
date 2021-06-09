@@ -1,9 +1,7 @@
+import { InternalError, NotFoundError, validateRequest } from "@atz3n/express-utils";
 import { Request, Response } from "express";
 import { query } from "express-validator";
-import { InternalError } from "../../errors/InternalError";
-import { NotFoundError } from "../../errors/notFoundError";
 import { validateAuthToken } from "../../middleware/authTokenValidation";
-import { validateRequest } from "../../middleware/requestValidation";
 import { IGreetingStore } from "../../storage/IGreetingStore";
 import { ARouter } from "../ARouter";
 
