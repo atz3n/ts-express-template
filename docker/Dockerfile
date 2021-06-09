@@ -16,9 +16,5 @@ COPY tsconfig.json .
 RUN npm install --only=prod
 
 
-# Set Docker variable
-ENV IS_DOCKER=true
-
-
 # Start backend
 CMD [ "npm", "start" ]

@@ -2,7 +2,6 @@ version: "3.8"
 networks: 
   simple-greeter-network:
     external: false
-    name: simple-greeter-network
 services:
   simple-greeter:
     image: simple-greeter

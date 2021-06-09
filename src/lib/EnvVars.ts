@@ -13,11 +13,7 @@ export class EnvVars {
             return;
         }
         this.isInitialized = true;
-
-
-        if (!process.env.IS_DOCKER) {
-            dotenv.config();
-        }
+        dotenv.config();
 
 
         if (process.env.GREET_TEXT_EN) {
