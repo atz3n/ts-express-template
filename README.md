@@ -37,12 +37,17 @@ npm run lint
 
 Autofix lint errors:
 ```
-npm run fix-lint
+npm run fix:lint
 ```
 
 Run tests:
 ```
 npm run test
+```
+
+Run in dev mode:
+```
+npm run dev
 ```
 
 Start:
