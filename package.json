@@ -8,8 +8,9 @@
   "license": "ISC",
   "scripts": {
     "lint": "eslint ./ --ext .ts",
-    "fix-lint": "eslint ./ --fix --ext .ts",
+    "fix:lint": "eslint ./ --fix --ext .ts",
     "start": "ts-node --files src/index.ts",
+    "dev": "ts-node-dev --files src/index",
     "test": "jest --testEnvironment=node"
   },
   "devDependencies": {
@@ -23,7 +24,8 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "supertest": "^6.0.1",
-    "ts-jest": "^26.4.4"
+    "ts-jest": "^26.4.4",
+    "ts-node-dev": "^1.1.6"
   },
   "dependencies": {
     "@atz3n/express-utils": "^1.1.0",
