@@ -1,20 +1,18 @@
-FROM node:12.19.0-alpine3.11
-
+FROM node:14.17-alpine3.13
 
 # Set working directory
 WORKDIR /usr/src/app
 
-
-# Copy files
-COPY src ./src
+# Copy meta files files
 COPY package.json .
-COPY package-lock.json .
+COPY yarn.lock .
 COPY tsconfig.json .
 
-
 # Install dependencies
-RUN npm install --only=prod
+RUN yarn install --prod
 
+# Copy source files
+COPY src ./src
 
 # Start backend
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
