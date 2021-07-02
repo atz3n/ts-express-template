@@ -5,14 +5,14 @@ WORKDIR /usr/src/app
 
 # Copy meta files files
 COPY package.json .
-COPY yarn.lock .
+COPY package-lock.json .
 COPY tsconfig.json .
 
 # Install dependencies
-RUN yarn install --prod
+RUN npm install --prod
 
 # Copy source files
 COPY src ./src
 
-# Start backend
-CMD [ "yarn", "start" ]
+# Start node
+CMD [ "npm", "start" ]
